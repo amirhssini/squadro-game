@@ -8,6 +8,32 @@ Classes:
 from random import choice
 # Importation de la classe Squadro_interface
 from squadro_interface import SquadroInterface
+from argparse import ArgumentParser
+
+
+def analyser_commande():
+    """Génère un analyseur de ligne de commande
+    En utilisant le module argparse, génère un analyseur de ligne de commande.
+    L'analyseur offre (1) argument positionnel:
+        IDUL: IDUL du ou des joueurs.
+    Ainsi que les (2) arguments optionnel:
+        help: show this help message and exit
+        parties: Lister les 20 dernières parties.
+    Returns:
+        Namespace: Retourne un objet de type Namespace possédant
+            les clef «IDUL» et «parties».
+    """
+
+    parser = ArgumentParser(description="Squadro - Phase 2")
+    parser.add_argument('-a', '--automatique', dest='parties', action='store_true',
+                        help="Activer le mode automatique.")
+    parser.add_argument('-l', '--local', dest='parties', action='store_true',
+                        help="Jouer localement.")
+    parser.add_argument('-p', '--parties', dest='parties', action='store_true',
+                        help="Lister les 20 dernières parties.")
+    parser.add_argument('IDUL', nargs='+', help="IDUL du ou des joueurs.")
+
+    return parser.parse_args()
 
 
 class SquadroError(Exception):
