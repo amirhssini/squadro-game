@@ -93,7 +93,7 @@ def débuter_partie(iduls):
 
     # créer la nouvelle partie et retourner l'état initial
 
-    rep = requests.post(URL+'partie', data={'iduls': iduls})
+    rep = requests.post(URL+'partie', data={'iduls': iduls, 'bot': None})
 
     if rep.status_code == 200:
         # la requête s'est déroulée normalement; décoder le JSON

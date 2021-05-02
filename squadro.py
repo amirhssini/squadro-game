@@ -40,11 +40,40 @@ def sauvegarder_partie_local(id, prochain_joueur, état, gagnant=None):
 
 
 def lister_parties_local():
-    pass
+    rep = requests.get(URL+'parties', params={'iduls': iduls})
+
+    if rep.status_code == 200:
+        # la requête s'est déroulée normalement; décoder le JSON
+        rep = rep.json()
+        rep = list(rep['parties'])
+        return rep  # retourne dictionnaire
+
+    elif rep.status_code == 406:
+        # Votre requête est invalide; décoder le JSON
+        rep = rep.json()
+        raise RuntimeError(rep)
+
+    else:
+        # Une erreur innatendue est survenu
+        print(
+            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def récupérer_parties_local():
-    pass
+    if rep.status_code == 200:
+        # la requête s'est déroulée normalement; décoder le JSON
+        rep = rep.json()
+        # retourne dictionnaire
+        return (rep['id'], rep['prochain_joueur'], rep['état'])
+
+    elif rep.status_code == 406:
+        # Votre requête est invalide; décoder le JSON
+        rep = rep.json()
+        raise RuntimeError(rep)
+    else:
+        # Une erreur innatendue est survenu
+        print(
+            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 class SquadroError(Exception):
