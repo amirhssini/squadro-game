@@ -6,7 +6,6 @@ Classes:
     * Squadro: Mécanique du jeu Squadro Hors-Ligne
 """
 from random import choice
-# Importation de la classe Squadro_interface
 from squadro_interface import SquadroInterface
 from argparse import ArgumentParser
 
@@ -587,3 +586,20 @@ class Squadro(SquadroInterface):
                 return joueur["nom"]
 
         return False
+
+    def afficher_parties(parties):
+        """Afficher les parties
+        Args:
+            parties (list): Liste des parties d'un joueur.
+        """
+
+        aff_parties = ''
+        for i in range(len(parties)):
+            winner = (", gagnant: " +
+                      str(parties[i]['gagnant']) if parties[i]['gagnant'] else '')
+            sep = (" : " if i < 9 else ": ")
+            aff_parties += str(i + 1) + sep + str(parties[i]['date']) + ", " \
+                + str(parties[i]['joueurs'][0]) + " vs " + str(parties[i]['joueurs'][1]) \
+                + winner + "\n"
+
+        return aff_parties
