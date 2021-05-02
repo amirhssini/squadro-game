@@ -35,6 +35,18 @@ def analyser_commande():
     return parser.parse_args()
 
 
+def sauvegarder_partie_local(id, prochain_joueur, état, gagnant=None):
+    pass
+
+
+def lister_parties_local():
+    pass
+
+
+def récupérer_parties_local():
+    pass
+
+
 class SquadroError(Exception):
     '''
     Créé Exception SquadroError
