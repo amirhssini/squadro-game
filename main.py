@@ -39,8 +39,8 @@ Examples:
 """
 
 
-from squadro import analyser_commande, afficher_parties, sauvergarder_partie_local, lister_parties_local, récupérer_parties_local
 from api import lister_parties, débuter_partie, jouer_coup
+from squadro import analyser_commande, afficher_parties
 
 
 if __name__ == "__main__":

@@ -12,8 +12,8 @@ from copy import deepcopy
 
 class SquadroInterface:
     """
-    SquadroInterface procure les fonctions de base et soulève une excetion NotImplemented si la fonction n'est pas présente
-    dans la classe enfant.
+    SquadroInterface procure les fonctions de base et soulève une excetion NotImplemented
+    si la fonction n'est pas présente dans la classe enfant.
     """
 
     def __init__(self, joueur1, joueur2):
@@ -63,7 +63,8 @@ class SquadroInterface:
         Returns:
             List: L'état actuel du jeu sous la forme d'une liste de deux dictionnaires.
                 Le joueur 1 doit être à la première position de la liste.
-                Notez que les pions doivent être sous forme de liste [x1, x2, x3, x4, x5] uniquement.
+                Notez que les pions doivent être sous forme de liste 
+                [x1, x2, x3, x4, x5] uniquement.
         Raises:
             SquadroError: Le nom du joueur doit être une chaîne de caractère.
             SquadroError: L'élément `pions` doit être une liste.
@@ -80,7 +81,7 @@ class SquadroInterface:
         Cette méthode ne devrait pas être réécrite par la classe enfant.
         Returns:
             List: Une copie de l'état actuel du jeu sous la forme d'une liste de deux dictionnaires.
-                Notez que les pions doivent être sous forme de liste [x1, x2, x3, x4, x5] uniquement.
+            Notez que les pions doivent être sous forme de liste [x1, x2, x3, x4, x5] uniquement.
         Examples:
             [
                 {'nom': nom1, 'pions': [x1, x2, x3, x4, x5]},
@@ -88,8 +89,9 @@ class SquadroInterface:
             ]
             où la clé 'nom' d'un joueur est associée à son nom, la clé 'pions' est associée
             à la liste des pions du joueur. Le premier élément de la liste de pions représente
-            le premier pion du joueur (de haut en bas pour le joueur 1, et de gauche à droite pour le joueur 2).
-            L'entier assigné au pion représente sa position (0 pour le départ, 6 pour la mi-chemin et 12 pour la fin).
+            le premier pion du joueur (de haut en bas pour J1, et de gauche à droite pour J2).
+            L'entier assigné au pion représente sa position
+                (0 pour le départ, 6 pour la mi-chemin et 12 pour la fin).
         """
         return deepcopy(self.état)
 

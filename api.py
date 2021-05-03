@@ -34,7 +34,7 @@ def lister_parties(iduls):
         rep = list(rep['parties'])
         return rep  # retourne dictionnaire
 
-    elif rep.status_code == 406:
+    if rep.status_code == 406:
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)

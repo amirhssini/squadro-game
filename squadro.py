@@ -6,8 +6,8 @@ Classes:
     * Squadro: Mécanique du jeu Squadro Hors-Ligne
 """
 from random import choice
-from squadro_interface import SquadroInterface
 from argparse import ArgumentParser
+from squadro_interface import SquadroInterface
 
 
 def analyser_commande():
@@ -57,7 +57,7 @@ def sauvergarder_partie_local(id, prochain_joueur, état, gagnant=None):
     pass
 
 
-def lister_parties_local():
+def lister_parties_local(iduls):
     rep = requests.get(URL+'parties', params={'iduls': iduls})
 
     if rep.status_code == 200:
@@ -77,7 +77,7 @@ def lister_parties_local():
             f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
-def récupérer_parties_local():
+def récupérer_parties_local(id_partie):
     if rep.status_code == 200:
         # la requête s'est déroulée normalement; décoder le JSON
         rep = rep.json()
