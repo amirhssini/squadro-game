@@ -23,7 +23,7 @@ def analyser_commande():
             les clef «IDUL» et «parties».
     """
 
-    parser = ArgumentParser(description="Squadro - Phase 2")
+    parser = ArgumentParser(description="Squadro - Phase 3")
     parser.add_argument('-a', '--automatique', dest='parties', action='store_true',
                         help="Activer le mode automatique.")
     parser.add_argument('-l', '--local', dest='parties', action='store_true',
@@ -35,7 +35,25 @@ def analyser_commande():
     return parser.parse_args()
 
 
-def sauvegarder_partie_local(id, prochain_joueur, état, gagnant=None):
+def afficher_parties(parties):
+    """Afficher les parties
+    Args:
+        parties (list): Liste des parties d'un joueur.
+    """
+
+    aff_parties = ''
+    for i in range(len(parties)):
+        winner = (", gagnant: " +
+                  str(parties[i]['gagnant']) if parties[i]['gagnant'] else '')
+        sep = (" : " if i < 9 else ": ")
+        aff_parties += str(i + 1) + sep + str(parties[i]['date']) + ", " \
+            + str(parties[i]['joueurs'][0]) + " vs " + str(parties[i]['joueurs'][1]) \
+            + winner + "\n"
+
+    return aff_parties
+
+
+def sauvergarder_partie_local(id, prochain_joueur, état, gagnant=None):
     pass
 
 
@@ -627,20 +645,3 @@ class Squadro(SquadroInterface):
                 return joueur["nom"]
 
         return False
-
-    def afficher_parties(parties):
-        """Afficher les parties
-        Args:
-            parties (list): Liste des parties d'un joueur.
-        """
-
-        aff_parties = ''
-        for i in range(len(parties)):
-            winner = (", gagnant: " +
-                      str(parties[i]['gagnant']) if parties[i]['gagnant'] else '')
-            sep = (" : " if i < 9 else ": ")
-            aff_parties += str(i + 1) + sep + str(parties[i]['date']) + ", " \
-                + str(parties[i]['joueurs'][0]) + " vs " + str(parties[i]['joueurs'][1]) \
-                + winner + "\n"
-
-        return aff_parties

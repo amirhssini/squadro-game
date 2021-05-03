@@ -39,7 +39,7 @@ Examples:
 """
 
 
-from squadro import analyser_commande, afficher_damier_ascii, afficher_parties, Squadro
+from squadro import analyser_commande, afficher_parties, sauvergarder_partie_local, lister_parties_local, récupérer_parties_local
 from api import lister_parties, débuter_partie, jouer_coup
 
 
