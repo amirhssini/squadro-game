@@ -39,10 +39,9 @@ def lister_parties(iduls):
         rep = rep.json()
         raise RuntimeError(rep)
 
-    else:
-        # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+    # Une erreur innatendue est survenu
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def récupérer_partie(id_partie):
@@ -67,14 +66,13 @@ def récupérer_partie(id_partie):
         # retourne dictionnaire
         return (rep['id'], rep['prochain_joueur'], rep['état'])
 
-    elif rep.status_code == 406:
+    if rep.status_code == 406:
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    else:
         # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def débuter_partie(iduls):
@@ -100,14 +98,13 @@ def débuter_partie(iduls):
         rep = rep.json()
         return rep  # retourne dictionnaire
 
-    elif rep.status_code == 406:
+    if rep.status_code == 406:
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    else:
-        # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+    # Une erreur innatendue est survenu
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def jouer_coup(id_partie, idul, pion):
@@ -140,11 +137,10 @@ def jouer_coup(id_partie, idul, pion):
 
         return rep  # retourne dictionnaire
 
-    elif rep.status_code == 406:
+    if rep.status_code == 406:
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    else:
-        # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+    # Une erreur innatendue est survenu
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")

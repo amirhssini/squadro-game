@@ -74,7 +74,7 @@ def lister_parties_local(iduls):
     else:
         # Une erreur innatendue est survenu
         print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+            f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
 
 
 def récupérer_parties_local(id_partie):
@@ -91,7 +91,7 @@ def récupérer_parties_local(id_partie):
     else:
         # Une erreur innatendue est survenu
         print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+            f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
 
 
 class SquadroError(Exception):
