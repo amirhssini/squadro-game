@@ -63,7 +63,7 @@ class SquadroInterface:
         Returns:
             List: L'état actuel du jeu sous la forme d'une liste de deux dictionnaires.
                 Le joueur 1 doit être à la première position de la liste.
-                Notez que les pions doivent être sous forme de liste 
+                Notez que les pions doivent être sous forme de liste
                 [x1, x2, x3, x4, x5] uniquement.
         Raises:
             SquadroError: Le nom du joueur doit être une chaîne de caractère.

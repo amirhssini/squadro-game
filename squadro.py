@@ -54,30 +54,27 @@ def afficher_parties(parties):
 
 
 def sauvergarder_partie_local(id, prochain_joueur, état, gagnant=None):
-    pass
+    return id, prochain_joueur, état, gagnant
 
 
 def lister_parties_local(iduls):
     rep = requests.get(URL+'parties', params={'iduls': iduls})
 
     if rep.status_code == 200:
-        # la requête s'est déroulée normalement; décoder le JSON
         rep = rep.json()
         rep = list(rep['parties'])
-        return rep  # retourne dictionnaire
+        return rep
 
-    elif rep.status_code == 406:
-        # Votre requête est invalide; décoder le JSON
+    if rep.status_code == 406:
         rep = rep.json()
         raise RuntimeError(rep)
 
     else:
-        # Une erreur innatendue est survenu
         print(
             f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
 
 
-def récupérer_parties_local(id_partie):
+def récupérer_parties_local():
     if rep.status_code == 200:
         # la requête s'est déroulée normalement; décoder le JSON
         rep = rep.json()
@@ -462,14 +459,13 @@ class Squadro(SquadroInterface):
             if self.état[0]['pions'][pion-1] == 12:
                 raise SquadroError(
                     'Ce pion a déjà atteint la destination finale.')
-            else:
                 # établir mécanique pour avancer pions
-                if pion in (1, 5):
-                    self.mecanique_bouger_pion(0, pion, 3, 1)
-                if pion in (2, 4):
-                    self.mecanique_bouger_pion(0, pion, 1, 3)
-                if pion == 3:
-                    self.mecanique_bouger_pion(0, pion, 2, 2)
+            if pion in (1, 5):
+                self.mecanique_bouger_pion(0, pion, 3, 1)
+            if pion in (2, 4):
+                self.mecanique_bouger_pion(0, pion, 1, 3)
+            if pion == 3:
+                self.mecanique_bouger_pion(0, pion, 2, 2)
 
         elif self.état[1]['nom'] == joueur:
 
@@ -486,14 +482,13 @@ class Squadro(SquadroInterface):
                 raise SquadroError(
                     'Ce pion a déjà atteint la destination finale.')
 
-            else:
-                # établir mécanique pour avancer pions
-                if pion in (1, 5):
-                    self.mecanique_bouger_pion(1, pion, 1, 3)
-                if pion in (2, 4):
-                    self.mecanique_bouger_pion(1, pion, 3, 1)
-                if pion == 3:
-                    self.mecanique_bouger_pion(1, pion, 2, 2)
+            # établir mécanique pour avancer pions
+            if pion in (1, 5):
+                self.mecanique_bouger_pion(1, pion, 1, 3)
+            if pion in (2, 4):
+                self.mecanique_bouger_pion(1, pion, 3, 1)
+            if pion == 3:
+                self.mecanique_bouger_pion(1, pion, 2, 2)
 
         else:
             raise SquadroError(
@@ -554,7 +549,7 @@ class Squadro(SquadroInterface):
                 pjactif[pion-1] = 6
                 break
 
-            elif pjactif[pion-1] >= 12:
+            if pjactif[pion-1] >= 12:
                 pjactif[pion-1] = 12
                 break
 
@@ -579,7 +574,7 @@ class Squadro(SquadroInterface):
 
             return (joueur, p + 1)
 
-        elif self.état[1]['nom'] == joueur:
+        if self.état[1]['nom'] == joueur:
 
             pionsactifs = []
             for index, value in enumerate(self.état[1]['pions']):
@@ -626,8 +621,7 @@ class Squadro(SquadroInterface):
         if self.état[0]['pions'][npion-1] == 12:
             raise SquadroError('Ce pion a déjà atteint la destination finale.')
 
-        else:
-            return npion
+        return npion
 
     def partie_terminée(self):
         """Déterminer si la partie est terminée.
