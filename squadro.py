@@ -42,7 +42,7 @@ def afficher_parties(parties):
     """
 
     aff_parties = ''
-    for i in range(len(parties)):
+    for i in enumerate(parties):
         winner = (", gagnant: " +
                   str(parties[i]['gagnant']) if parties[i]['gagnant'] else '')
         sep = (" : " if i < 9 else ": ")
@@ -69,9 +69,8 @@ def lister_parties_local(iduls):
         rep = rep.json()
         raise RuntimeError(rep)
 
-    else:
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
 
 
 def récupérer_parties_local():
@@ -174,19 +173,6 @@ class Squadro(SquadroInterface):
                     {'nom': joueur2, 'pions': [0, 0, 0, 0, 0]}]
 
     def __str__(self):
-        """Produire un représentation en art ASCII de l'état actuel de la partie.
-        Ne faites preuve d'aucune originalité dans votre «art ascii»,
-        car votre fonction sera testée par un programme et celui-ci est
-        de nature intolérante (votre affichage doit être identique à
-        celui illustré). Notez aussi que votre fonction sera testée
-        avec plusieurs états de jeu différents.
-        Returns:
-            str: La chaîne de caractères de la représentation.
-        Afficher le damier
-        Args:
-        état (dict): Dictionnaire représentant l'état du jeu.
-        """
-
         # Nom des joueurs
         joueur1 = self.état[0]['nom']  # nom joueur 1
         joueur2 = self.état[1]['nom']  # nom joueur 2
@@ -429,18 +415,6 @@ class Squadro(SquadroInterface):
         return damier
 
     def déplacer_pion(self, joueur, pion):
-        """Déplace un jeton.
-        Pour le joueur spécifié, déplacer le pion spécifié pour le nombre permis de cases.
-        Args:
-            joueur (str): Le nom du jouer tel que présent dans l'état.
-            pion (int): Le pion à déplacer (de 1 à 5 inclusivement).
-        Raises:
-            SquadroError: Le nom du joueur est inexistant pour la partie en cours.
-            SquadroError: Le numéro du pion devrait être entre 1 à 5 inclusivement.
-            SquadroError: La partie est déjà terminée.
-            SquadroError: Ce pion a déjà atteint la destination finale.
-        """
-
         if 1 > pion > 5:
             raise SquadroError(
                 'Le numéro du pion devrait être entre 1 à 5 inclusivement.')

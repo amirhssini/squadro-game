@@ -39,10 +39,6 @@ def lister_parties(iduls):
         rep = rep.json()
         raise RuntimeError(rep)
 
-    # Une erreur innatendue est survenu
-    print(
-        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
-
 
 def récupérer_partie(id_partie):
     """Récupérer une partie depuis son identifiant.
@@ -71,8 +67,6 @@ def récupérer_partie(id_partie):
         rep = rep.json()
         raise RuntimeError(rep)
         # Une erreur innatendue est survenu
-    print(
-        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def débuter_partie(iduls):
@@ -102,9 +96,6 @@ def débuter_partie(iduls):
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    # Une erreur innatendue est survenu
-    print(
-        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
 
 
 def jouer_coup(id_partie, idul, pion):
@@ -142,5 +133,3 @@ def jouer_coup(id_partie, idul, pion):
         rep = rep.json()
         raise RuntimeError(rep)
     # Une erreur innatendue est survenu
-    print(
-        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
