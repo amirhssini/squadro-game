@@ -56,7 +56,6 @@ if __name__ == "__main__":
         état_jeu = débuter_partie_retour['état']
 
         while état_jeu:
-            afficher_damier_ascii(état_jeu)
             print(f'\n        Au tour de {prochain_joueur} de jouer')
             coup = input("        Choissisez le pion à déplacer: ")
             état_tout = jouer_coup(id_jeu, prochain_joueur, coup)

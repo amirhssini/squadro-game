@@ -80,7 +80,7 @@ def récupérer_parties_local():
         # retourne dictionnaire
         return (rep['id'], rep['prochain_joueur'], rep['état'])
 
-    elif rep.status_code == 406:
+    if rep.status_code == 406:
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
@@ -561,9 +561,8 @@ class Squadro(SquadroInterface):
 
             return (joueur, p + 1)
 
-        else:
-            raise SquadroError(
-                "Le nom du joueur est inexistant pour la partie en cours.")
+        raise SquadroError(
+            "Le nom du joueur est inexistant pour la partie en cours.")
 
     def demander_coup(self, joueur):
         """
