@@ -75,19 +75,14 @@ def lister_parties_local(iduls):
 
 def récupérer_parties_local():
     if rep.status_code == 200:
-        # la requête s'est déroulée normalement; décoder le JSON
         rep = rep.json()
-        # retourne dictionnaire
         return (rep['id'], rep['prochain_joueur'], rep['état'])
 
     if rep.status_code == 406:
-        # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    else:
-        # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur suivant {rep.status_code}.")
 
 
 class SquadroError(Exception):

@@ -141,7 +141,5 @@ def jouer_coup(id_partie, idul, pion):
         # Votre requête est invalide; décoder le JSON
         rep = rep.json()
         raise RuntimeError(rep)
-    else:
-        # Une erreur innatendue est survenu
-        print(
-            f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
+    print(
+        f"Le GET sur '{URL}parties' a produit le code d'erreur {rep.status_code}.")
